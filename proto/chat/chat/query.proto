@@ -24,6 +24,12 @@ service Query {
     option (google.api.http).get = "/chat/chat/get_sent/{sender}";
   
   }
+  
+  // Queries a list of GetReceived items.
+  rpc GetReceived (QueryGetReceivedRequest) returns (QueryGetReceivedResponse) {
+    option (google.api.http).get = "/chat/chat/get_received/{receiver}";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -41,6 +47,16 @@ message QueryGetSentRequest {
 }
 
 message QueryGetSentResponse {
+  Text                                   text       = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetReceivedRequest {
+  string                                receiver   = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetReceivedResponse {
   Text                                   text       = 1;
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
