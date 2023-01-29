@@ -45304,6 +45304,12 @@ paths:
       tags:
         - Query
 definitions:
+  chat.chat.MsgSendTextResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uint64
   chat.chat.Params:
     type: object
     description: Params defines the parameters for the module.

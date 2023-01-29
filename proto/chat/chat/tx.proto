@@ -1,7 +1,20 @@
 syntax = "proto3";
+
 package chat.chat;
 
 option go_package = "chat/x/chat/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc SendText (MsgSendText) returns (MsgSendTextResponse);
+}
+message MsgSendText {
+  string creator  = 1;
+  string receiver = 2;
+  string body     = 3;
+}
+
+message MsgSendTextResponse {
+  uint64 id = 1;
+}
+
