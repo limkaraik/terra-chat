@@ -29,7 +29,7 @@ func (k Keeper) GetSent(goCtx context.Context, req *types.QueryGetSentRequest) (
 		if err := k.cdc.Unmarshal(value, &text); err != nil {
 			return err
 		}
-		if text.Receiver == sender {
+		if text.Sender == sender {
 			texts = append(texts, text)
 		}
 		return nil
