@@ -47,7 +47,7 @@ message QueryGetSentRequest {
 }
 
 message QueryGetSentResponse {
-  Text                                   text       = 1;
+  repeated Text                                   text       = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
@@ -57,7 +57,7 @@ message QueryGetReceivedRequest {
 }
 
 message QueryGetReceivedResponse {
-  Text                                   text       = 1;
+  repeated Text                                   text       = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
