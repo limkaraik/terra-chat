@@ -90,6 +90,9 @@ text:
   sender: cosmos1k5l32jxsxsu7c90cnyq7shrxlgq6ddha45g0x2
 ```
 
+## Bonus features that are yet to be implemented
+- for the message expiration, we can add another field which is the message creation time. During the retrieval of messages, we can filter by comparing the current time and creation time.
+- For encryption of message, I was unable to be find a way to encrypt the data on chain or for the application to somehow retrieve a secret key without exposing/hardcoding the key in a short amount of time.
 
 
 
