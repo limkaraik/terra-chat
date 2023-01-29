@@ -1,26 +1,47 @@
 syntax = "proto3";
+
 package chat.chat;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "chat/chat/params.proto";
+import "chat/chat/text.proto";
 
 option go_package = "chat/x/chat/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/chat/chat/params";
+  
+  }
+  
+  // Queries a list of GetSent items.
+  rpc GetSent (QueryGetSentRequest) returns (QueryGetSentResponse) {
+    option (google.api.http).get = "/chat/chat/get_sent/{sender}";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryGetSentRequest {
+  string                                sender     = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+message QueryGetSentResponse {
+  Text                                   text       = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
