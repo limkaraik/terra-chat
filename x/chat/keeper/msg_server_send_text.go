@@ -4,14 +4,22 @@ import (
 	"context"
 
 	"chat/x/chat/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func (k msgServer) SendText(goCtx context.Context, msg *types.MsgSendText) (*types.MsgSendTextResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Handling the message
-	_ = ctx
+	var post = types.Text{
+		Sender:   msg.Creator,
+		Receiver: msg.Receiver,
+		Body:     msg.Body,
+	}
+	id := k.AppendText(
+		ctx,
+		post,
+	)
 
-	return &types.MsgSendTextResponse{}, nil
+	return &types.MsgSendTextResponse{Id: id}, nil
 }

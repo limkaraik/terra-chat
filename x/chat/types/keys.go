@@ -12,6 +12,10 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_chat"
+
+	TextKey = "Text/value/"
+
+	TextCountKey = "Text/count/"
 )
 
 func KeyPrefix(p string) []byte {
